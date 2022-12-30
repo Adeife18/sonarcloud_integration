@@ -21,9 +21,9 @@ pipeline {
 // building docker image
 stage('Build') { 
             steps { 
-               withDockerRegistry([credentialsId: "dockerlogin", url: ""]) {
+               withDockerRegistry([credentialsId: "docker", url: ""]) {
                  script{
-                 app =  docker.build("tech365image")
+                 app =  docker.build("adeimage")
                  }
                }
             }
@@ -32,7 +32,7 @@ stage('Build') {
 	stage('Push') {
             steps {
                 script{
-                    docker.withRegistry("https://252889606091.dkr.ecr.us-east-2.amazonaws.com", "ecr:us-east-1b:aws_credentials") 
+                    docker.withRegistry("252889606091.dkr.ecr.us-east-1.amazonaws.com/adeimage", "ecr:us-east-1:aws_credentials") 
 			{
                     app.push("latest")
                     }
