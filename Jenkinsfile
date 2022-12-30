@@ -23,7 +23,7 @@ stage('Build') {
             steps { 
                withDockerRegistry([credentialsId: "docker", url: ""]) {
                  script{
-                 app =  docker.build("adeimage")
+                 app =  docker.build("adeifeimage")
                  }
                }
             }
@@ -32,7 +32,7 @@ stage('Build') {
 	stage('Push') {
             steps {
                 script{
-                    docker.withRegistry("252889606091.dkr.ecr.us-east-1.amazonaws.com/adeimage", "ecr:us-east-1:aws_credentials") 
+                    docker.withRegistry("252889606091.dkr.ecr.us-east-1.amazonaws.com/adeifeimage", "ecr:us-east-1:aws_credentials") 
 			{
                     app.push("latest")
                     }
